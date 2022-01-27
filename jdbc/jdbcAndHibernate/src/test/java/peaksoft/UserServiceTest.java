@@ -8,7 +8,7 @@ import peaksoft.service.UserServiceImpl;
 
 import java.util.List;
 
-public class UserServiceTest {
+public class  UserServiceTest {
 
     private final UserService userService = new UserServiceImpl();
 

@@ -17,7 +17,7 @@ public class UserDaoJdbcImpl implements UserDao {
     public void createUsersTable() {
         try (Connection connection = util.connection();
              Statement statement1 = connection.createStatement();) {
-            String sql = "CREATE TABLE users(" +
+            String sql = "CREATE  TABLE if not exists users(" +
                     "id serial primary key," +
                     "name varchar (50) not null," +
                     "last_name varchar(50) not null," +
@@ -33,7 +33,7 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        String sql = "DROP TABLE users";
+        String sql = "DROP  TABLE if not exists users";
         try (Connection connection = util.connection();
              Statement statement = connection.createStatement();) {
              statement.executeUpdate(sql);
@@ -73,6 +73,17 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
+    @Override
+    public User findById(long id) throws SQLException {
+        String sql = "SELECT FROM users WHERE id = (?)";
+        Connection connection =util.connection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setLong(1,id);
+        statement.executeUpdate();
+        System.out.println("findById successfully");
+        return (User) connection;
+    }
+
     public List<User> getAllUsers() {
         ArrayList<User> list = new ArrayList<>();
         User user = new User();
@@ -89,7 +100,6 @@ public class UserDaoJdbcImpl implements UserDao {
                 user.setAge( resul.getByte("age"));
                 list.add(user);
             }
-            System.out.println(list);
 
         } catch (Exception e) {
             System.out.println("There is no table");
