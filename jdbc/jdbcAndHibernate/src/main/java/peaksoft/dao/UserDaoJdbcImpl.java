@@ -17,11 +17,11 @@ public class UserDaoJdbcImpl implements UserDao {
     public void createUsersTable() {
         try (Connection connection = util.connection();
              Statement statement1 = connection.createStatement();) {
-            String sql = "CREATE  TABLE if not exists users(" +
+            String sql = "CREATE TABLE users (" +
                     "id serial primary key," +
-                    "name varchar (50) not null," +
-                    "last_name varchar(50) not null," +
-                    "age int)";
+                    "name varchar not null," +
+                    "last_name varchar not null," +
+                    "age int not null )";
             System.out.println("create table successfully");
             statement1.executeQuery(sql);
 
@@ -33,7 +33,7 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        String sql = "DROP  TABLE if not exists users";
+        String sql = "DROP TABLE if exists users";
         try (Connection connection = util.connection();
              Statement statement = connection.createStatement();) {
              statement.executeUpdate(sql);

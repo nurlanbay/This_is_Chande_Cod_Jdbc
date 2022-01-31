@@ -2,7 +2,6 @@ package peaksoft.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
 import peaksoft.model.User;
 
 import java.sql.Connection;
@@ -36,7 +35,7 @@ public class Util {
         configuration.setProperty(URL, "jdbc:postgresql://localhost:5432/postgres");
         configuration.setProperty(USER, "postgres");
         configuration.setProperty(PASS, "admin");
-        configuration.setProperty(HBM2DDL_AUTO, "update");
+        configuration.setProperty(HBM2DDL_AUTO, "create");
         configuration.setProperty(DIALECT, "org.hibernate.dialect.PostgreSQL9Dialect");
         configuration.setProperty(SHOW_SQL, "true");
         configuration.addAnnotatedClass(User.class);

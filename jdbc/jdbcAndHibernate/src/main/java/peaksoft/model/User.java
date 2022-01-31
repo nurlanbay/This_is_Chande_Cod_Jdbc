@@ -12,7 +12,7 @@ public class User {
     @Column (name = "name")
     private String name;
 
-    @Column (name = "lastName")
+    @Column (name = "last_name")
     private String lastName;
 
     @Column (name = "age")
@@ -20,6 +20,18 @@ public class User {
 
     public User() {
     }
+    /**
+     *
+     *
+     *
+     *
+     * *\керек болуп калды наушник Нурлан ака
+     *
+     *
+     *
+     *
+     *
+     */
 
     public User(String name, String lastName, Byte age) {
         this.name = name;
